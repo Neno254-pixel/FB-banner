@@ -3,8 +3,10 @@
 // @namespace    https://github.com/Neno254-pixel/FB-banner
 // @version      1.0.0
 // @description  Local-only demonstration of explainable suspicious-activity scoring using synthetic test records.
-// @match        https://www.facebook.com/*
-// @run-at       document-idle
+// @match        https://facebook.com/*
+// @match        https://*.facebook.com/*
+// @run-at       document-end
+// @noframes
 // @grant        none
 // ==/UserScript==
 
@@ -123,6 +125,10 @@
       <p class="muted">A score is a research signal, not proof of wrongdoing. No Facebook account is inspected or actioned.</p>
     </div>
   `;
+  // Inline positioning keeps the launcher visible even if Facebook's page CSS changes.
+  root.style.cssText = 'position:fixed!important;right:18px!important;bottom:18px!important;z-index:2147483647!important;display:block!important;visibility:visible!important;opacity:1!important;font:14px/1.45 Arial,sans-serif!important;color:#172033!important;';
+  const launcher = root.querySelector('#fb-review-toggle');
+  launcher.style.cssText = 'display:block!important;visibility:visible!important;opacity:1!important;background:#1877f2!important;color:#fff!important;border:0!important;border-radius:8px!important;padding:12px 16px!important;font-weight:700!important;cursor:pointer!important;box-shadow:0 2px 12px #0005!important;';
   document.body.appendChild(root);
 
   const panel = root.querySelector('#fb-review-panel');
